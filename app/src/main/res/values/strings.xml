@@ -1,3 +1,87 @@
 <resources>
     <string name="app_name">Kupe</string>
+
+    <!-- Welcome / login / home -->
+    <string name="welcome_tagline">Welcome page\nTo be designed</string>
+    <string name="action_login">Login</string>
+    <string name="action_register">Register</string>
+    <string name="login_title">Log in</string>
+    <string name="login_prompt">Welcome back</string>
+    <string name="home_placeholder">Home (placeholder)</string>
+    <string name="action_logout">Log out</string>
+    <string name="log_in_with">Log in with</string>
+
+    <!-- Registration shell -->
+    <string name="register_title">Create account</string>
+    <string name="step_indicator">Step %1$d of %2$d</string>
+    <string name="can_change_later">You can change this later.</string>
+    <string name="placeholder_label">PLACEHOLDER</string>
+    <string name="action_go_back">Go back</string>
+    <string name="action_skip">Skip</string>
+    <string name="action_next">Next</string>
+    <string name="action_upload_later">Upload later</string>
+    <string name="action_finish">Finish</string>
+
+    <!-- Registration step 1: credentials -->
+    <string name="credentials_prompt">Create your credentials</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="show_password">Show password</string>
+    <string name="hide_password">Hide password</string>
+    <string name="or_divider">OR</string>
+    <string name="sign_up_with">Sign up with</string>
+
+    <!-- Registration step 2: username -->
+    <string name="username_prompt">Select your username</string>
+    <string name="label_username">Username</string>
+    <string name="username_hint">Other users will see you by this username</string>
+
+    <!-- Registration steps 3, 4, 7: placeholders -->
+    <string name="travel_style_title">Let\'s set up your travel style first</string>
+    <string name="travel_style_subtitle">What kind of traveller do you consider yourself?</string>
+    <string name="interests_title">To know you better...</string>
+    <string name="interests_subtitle">What are your main interests when travelling?</string>
+    <string name="photo_title">Let others see you</string>
+    <string name="photo_subtitle">Upload a photo</string>
+
+    <!-- Registration step 5: country -->
+    <string name="country_title">The start of it all</string>
+    <string name="country_subtitle">Which is your country?</string>
+
+    <!-- Registration step 6: languages -->
+    <string name="languages_title">Your words, your essence</string>
+    <string name="languages_subtitle">Which languages do you feel fluent with?</string>
+    <string name="languages_info">Kupe automatically translates messages in real time. This is just to let users know which languages you really talk in case you decide to hang out with any of them.</string>
+    <string name="languages_limit">You can select up to %1$d languages.</string>
+    <string name="remove_item">Remove %1$s</string>
+
+    <!-- Search -->
+    <string name="search_hint">Search</string>
+    <string name="search_no_results">No results found</string>
+    <string name="search_error">Couldn\'t load results. Check your connection and try again.</string>
+
+    <!-- Validation -->
+    <string name="error_email_required">Email is required.</string>
+    <string name="error_email_invalid">Enter a valid email address.</string>
+    <string name="error_password_required">Password is required.</string>
+    <string name="error_password_short">Password must be at least 6 characters long.</string>
+    <string name="error_password_long">Password must be at most 128 characters long.</string>
+    <string name="error_username_required">Username is required.</string>
+    <string name="error_username_length">Username must be between 3 and 32 characters.</string>
+    <string name="error_username_chars">Only letters, numbers, \'.\', \'_\' and \'-\' are allowed.</string>
+
+    <!-- Server / network errors -->
+    <string name="error_email_taken">This email is already registered.</string>
+    <string name="error_username_taken">This username is already in use. Please pick another one.</string>
+    <string name="error_invalid_credentials">Incorrect email or password.</string>
+    <string name="error_registration_expired">Your registration session expired. Please start again.</string>
+    <string name="error_google_not_configured">Google sign-up isn\'t available yet.</string>
+    <string name="error_google_no_account">No account is linked to this Google account. Create one from Register first.</string>
+    <string name="error_google_failed">Google sign-in failed. Please try again.</string>
+    <string name="error_google_unverified">Your Google email isn\'t verified.</string>
+    <string name="error_google_conflict">An account with this email already exists. Log in with your password instead.</string>
+    <string name="error_validation">Please check the data you entered.</string>
+    <string name="error_network">Can\'t reach the server. Check your connection and try again.</string>
+    <string name="error_server">Something went wrong on our side. Please try again later.</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
 </resources>
