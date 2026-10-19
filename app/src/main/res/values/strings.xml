@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kupe</string>
+    <string name="app_name" translatable="false">Kupe</string>
 
     <!-- Welcome / login / home -->
     <string name="welcome_tagline">Welcome page\nTo be designed</string>
@@ -9,6 +9,8 @@
     <string name="login_prompt">Welcome back</string>
     <string name="home_placeholder">Home (placeholder)</string>
     <string name="action_logout">Log out</string>
+    <string name="language_selector_description">App language</string>
+    <string name="language_system_default">System default</string>
     <string name="log_in_with">Log in with</string>
 
     <!-- Registration shell -->

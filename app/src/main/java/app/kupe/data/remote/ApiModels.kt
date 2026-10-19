@@ -59,14 +59,21 @@ data class ExternalAuthResponse(
 )
 
 @Serializable
-data class Country(val id: String, val iso2: String, val name: String)
-
+data class Country(val id: String, val iso2: String, val name: String) {
+    fun displayName(locale: Locale): String =
+        runCatching {
+            Locale.Builder().setRegion(iso2.uppercase(Locale.ROOT)).build().getDisplayCountry(locale)
+        }.getOrNull()
+            ?.takeIf { it.isNotBlank() && !it.equals(iso2, ignoreCase = true) }
+            ?: name
+}
 @Serializable
 data class Language(val id: String, val code: String, val name: String? = null) {
-    val displayName: String
-        get() = name?.takeIf { it.isNotBlank() }
-            ?: Locale.forLanguageTag(code).getDisplayLanguage(Locale.ENGLISH)
-                .takeIf { it.isNotBlank() && !it.equals(code, ignoreCase = true) }
+        fun displayName(locale: Locale): String =
+        runCatching { Locale.forLanguageTag(code).getDisplayLanguage(locale) }.getOrNull()
+            ?.takeIf { it.isNotBlank() && !it.equals(code, ignoreCase = true) }
+            ?.replaceFirstChar { it.titlecase(locale) }
+            ?: name?.takeIf { it.isNotBlank() }
             ?: code
 }
 

@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.text.Normalizer
+import java.util.Locale
 
 data class SearchState<T>(
     val query: String = "",
@@ -26,12 +27,14 @@ data class SearchState<T>(
 
 open class SearchViewModel<T>(
     private val load: suspend () -> Result<List<T>>,
-    private val searchText: (T) -> List<String>,
+    private val searchText: (T, Locale) -> List<String>,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SearchState<T>())
     val state: StateFlow<SearchState<T>> = _state.asStateFlow()
 
+    private var locale: Locale = Locale.getDefault()
+    private var loaded: List<T>? = null
     private var items: List<Pair<T, List<String>>>? = null
     private var loadJob: Job? = null
 
@@ -45,13 +48,25 @@ open class SearchViewModel<T>(
         applyFilter()
     }
 
+    fun onLocaleChange(newLocale: Locale) {
+        if (newLocale == locale) return
+        locale = newLocale
+        index()
+        applyFilter()
+    }
+
+    private fun index() {
+        items = loaded?.map { item -> item to searchText(item, locale).map(::normalize) }
+    }
+
     private fun ensureLoaded() {
         if (loadJob?.isActive == true) return
         loadJob = viewModelScope.launch {
             _state.update { it.copy(loading = true, error = false) }
             load().fold(
                 onSuccess = { list ->
-                    items = list.map { item -> item to searchText(item).map(::normalize) }
+                    loaded = list
+                    index()
                     _state.update { it.copy(loading = false) }
                     applyFilter()
                 },
@@ -90,7 +105,7 @@ open class SearchViewModel<T>(
 
 class CountrySearchViewModel(repository: GeoRepository) : SearchViewModel<Country>(
     load = { repository.countries() },
-    searchText = { listOf(it.name) },
+    searchText = { country, locale -> listOf(country.displayName(locale), country.name) },
 ) {
     companion object {
         fun factory(container: AppContainer): ViewModelProvider.Factory = viewModelFactory {
@@ -101,7 +116,9 @@ class CountrySearchViewModel(repository: GeoRepository) : SearchViewModel<Countr
 
 class LanguageSearchViewModel(repository: GeoRepository) : SearchViewModel<Language>(
     load = { repository.languages() },
-    searchText = { listOf(it.displayName, it.code) },
+    searchText = { language, locale ->
+        listOfNotNull(language.displayName(locale), language.name?.takeIf { it.isNotBlank() }, language.code)
+    },
 ) {
     companion object {
         fun factory(container: AppContainer): ViewModelProvider.Factory = viewModelFactory {

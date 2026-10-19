@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.kupe.R
+import app.kupe.core.locale.currentLocale
 import app.kupe.data.remote.Flags
 import app.kupe.ui.components.HintText
 import app.kupe.ui.components.NavigationFooter
@@ -31,6 +33,8 @@ fun LanguagesScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val search by searchViewModel.state.collectAsStateWithLifecycle()
+    val locale = currentLocale()
+    LaunchedEffect(locale) { searchViewModel.onLocaleChange(locale) }
     BackHandler(onBack = onBack)
 
     val limitReached = state.languages.size >= MAX_LANGUAGES
@@ -57,7 +61,7 @@ fun LanguagesScreen(
             ) {
                 state.languages.forEach { language ->
                     SelectedItemRow(
-                        label = language.displayName,
+                        label = language.displayName(locale),
                         flagUrl = Flags.forLanguage(language.code),
                         removeIcon = DeleteIcon,
                         onRemove = { viewModel.removeLanguage(language) },
@@ -78,7 +82,7 @@ fun LanguagesScreen(
                     searchViewModel.onQueryChange("")
                 },
                 itemKey = { it.id },
-                itemLabel = { it.displayName },
+                itemLabel = { it.displayName(locale) },
                 itemFlag = { Flags.forLanguage(it.code) },
                 modifier = Modifier.fillMaxWidth().weight(1f),
             )

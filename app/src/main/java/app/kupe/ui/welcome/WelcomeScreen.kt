@@ -22,6 +22,7 @@ import app.kupe.R
 import app.kupe.ui.components.AppLogoPlaceholder
 import app.kupe.ui.components.KupeButton
 import app.kupe.ui.components.KupeButtonStyle
+import app.kupe.ui.components.LanguageSelector
 
 @Composable
 fun WelcomeScreen(onLogin: () -> Unit, onRegister: () -> Unit) {
@@ -33,6 +34,7 @@ fun WelcomeScreen(onLogin: () -> Unit, onRegister: () -> Unit) {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        LanguageSelector(Modifier.align(Alignment.End))
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.Center,

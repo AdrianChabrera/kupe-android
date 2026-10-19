@@ -5,12 +5,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.kupe.R
+import app.kupe.core.locale.currentLocale
 import app.kupe.data.remote.Flags
 import app.kupe.ui.components.NavigationFooter
 import app.kupe.ui.components.RegistrationScaffold
@@ -25,6 +27,8 @@ fun CountryScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val search by searchViewModel.state.collectAsStateWithLifecycle()
+    val locale = currentLocale()
+    LaunchedEffect(locale) { searchViewModel.onLocaleChange(locale) }
     BackHandler(onBack = onBack)
 
     RegistrationScaffold(
@@ -42,7 +46,7 @@ fun CountryScreen(
         Spacer(Modifier.height(24.dp))
         state.country?.let { country ->
             SelectedItemRow(
-                label = country.name,
+                label = country.displayName(locale),
                 flagUrl = Flags.forCountry(country.iso2),
                 removeIcon = RemoveIcon,
                 onRemove = viewModel::clearCountry,
@@ -58,7 +62,7 @@ fun CountryScreen(
                 searchViewModel.onQueryChange("")
             },
             itemKey = { it.id },
-            itemLabel = { it.name },
+            itemLabel = { it.displayName(locale) },
             itemFlag = { Flags.forCountry(it.iso2) },
             modifier = Modifier.fillMaxWidth().weight(1f),
         )
