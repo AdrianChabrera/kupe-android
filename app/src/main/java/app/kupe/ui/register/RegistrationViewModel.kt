@@ -34,6 +34,7 @@ data class RegistrationState(
     val username: String = "",
     val country: Country? = null,
     val languages: List<Language> = emptyList(),
+    val travelStyleCode: String? = null,
     val isExternal: Boolean = false,
     val isLoading: Boolean = false,
     val showCredentialErrors: Boolean = false,
@@ -66,6 +67,8 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
     fun onUsernameChange(value: String) = _state.update { it.copy(username = value.take(32), errorRes = null) }
 
     fun selectCountry(country: Country) = _state.update { it.copy(country = country) }
+    fun selectTravelStyle(code: String) = _state.update { it.copy(travelStyleCode = code) }
+    fun clearTravelStyle() = _state.update { it.copy(travelStyleCode = null) }
     fun clearCountry() = _state.update { it.copy(country = null) }
 
     fun addLanguage(language: Language) = _state.update {
@@ -150,7 +153,7 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
         val username = current.username.trim()
         _state.update { it.copy(isLoading = true, errorRes = null) }
         viewModelScope.launch {
-            auth.completeRegistration(token, username, current.country?.id, current.languages.map { it.id }).fold(
+            auth.completeRegistration(token, username, current.country?.id, current.languages.map { it.id }, current.travelStyleCode).fold(
                 onSuccess = {
                     registrationToken = null
                     _state.value = RegistrationState()

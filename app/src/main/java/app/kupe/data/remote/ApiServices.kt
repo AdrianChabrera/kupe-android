@@ -26,3 +26,8 @@ interface GeoApi {
     @GET("api/countries/languages")
     suspend fun languages(): List<Language>
 }
+
+interface UsersApi {
+    @GET("api/users/travel-styles")
+    suspend fun travelStyles(): List<String>
+}

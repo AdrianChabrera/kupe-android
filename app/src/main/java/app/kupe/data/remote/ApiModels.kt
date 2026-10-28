@@ -19,6 +19,7 @@ data class CompleteRegistrationRequest(
     val username: String,
     val countryId: String? = null,
     val languageIds: List<String>? = null,
+    val travelStyleCode: String? = null,
 ) {
     override fun toString() = "CompleteRegistrationRequest(username=$username)"
 }
@@ -77,6 +78,9 @@ data class Language(val id: String, val code: String, val name: String? = null) 
             ?: code
 }
 
+@Serializable
+data class TravelStyle(val code: String)
+
 object ErrorCodes {
     const val COUNTRY_NOT_FOUND = "COUNTRY_NOT_FOUND"
     const val EMAIL_ALREADY_EXISTS = "EMAIL_ALREADY_EXISTS"
@@ -90,6 +94,7 @@ object ErrorCodes {
     const val LANGUAGE_NOT_FOUND = "LANGUAGE_NOT_FOUND"
     const val UNSUPPORTED_EXTERNAL_PROVIDER = "UNSUPPORTED_EXTERNAL_PROVIDER"
     const val USERNAME_ALREADY_EXISTS = "USERNAME_ALREADY_EXISTS"
+    const val TRAVEL_STYLE_NOT_FOUND = "TRAVEL_STYLE_NOT_FOUND"
 
     val ALL = setOf(
         COUNTRY_NOT_FOUND, EMAIL_ALREADY_EXISTS, EXTERNAL_EMAIL_CONFLICT, EXTERNAL_EMAIL_NOT_VERIFIED,

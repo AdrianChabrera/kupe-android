@@ -12,8 +12,10 @@ import app.kupe.data.google.GoogleIdTokenProvider
 import app.kupe.data.remote.AuthApi
 import app.kupe.data.remote.Flags
 import app.kupe.data.remote.GeoApi
+import app.kupe.data.remote.UsersApi
 import app.kupe.data.repository.AuthRepository
 import app.kupe.data.repository.GeoRepository
+import app.kupe.data.repository.UsersRepository
 import coil3.ImageLoader
 import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import coil3.request.crossfade
@@ -59,6 +61,8 @@ class AppContainer(application: Application) {
 
     val authRepository = AuthRepository(retrofit.create(AuthApi::class.java), tokenStore)
     val geoRepository = GeoRepository(retrofit.create(GeoApi::class.java))
+
+    val usersRepository = UsersRepository(retrofit.create(UsersApi::class.java))
 
     val googleIdTokenProvider: GoogleIdTokenProvider =
         CredentialManagerGoogleIdTokenProvider(BuildConfig.GOOGLE_WEB_CLIENT_ID)

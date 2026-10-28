@@ -38,9 +38,23 @@
     <string name="label_username">Username</string>
     <string name="username_hint">Other users will see you by this username</string>
 
-    <!-- Registration steps 3, 4, 7: placeholders -->
+    <!-- Registration step 3: travel style -->
     <string name="travel_style_title">Let\'s set up your travel style first</string>
     <string name="travel_style_subtitle">What kind of traveller do you consider yourself?</string>
+    <string name="action_retry">Retry</string>
+    <string name="style_adventurer_name">Adventurer</string>
+    <string name="style_adventurer_desc">Pending.</string>
+    <string name="style_planner_name">Planner</string>
+    <string name="style_planner_desc">Pending.</string>
+    <string name="style_relaxer_name">Relaxer</string>
+    <string name="style_relaxer_desc">Pending.</string>
+    <string name="style_improviser_name">Improviser</string>
+    <string name="style_improviser_desc">You\'re up to any plan, and no plan at all works too. The best trips are the ones you didn\'t fully map out.</string>
+    <string name="action_select">Select</string>
+    <string name="travel_style_previous">Previous travel style</string>
+    <string name="travel_style_next">Next travel style</string>
+
+    <!-- Registration steps 4, 7: placeholders -->
     <string name="interests_title">To know you better...</string>
     <string name="interests_subtitle">What are your main interests when travelling?</string>
     <string name="photo_title">Let others see you</string>

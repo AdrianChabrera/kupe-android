@@ -33,6 +33,7 @@ import app.kupe.ui.register.LanguagesScreen
 import app.kupe.ui.register.ProfilePhotoScreen
 import app.kupe.ui.register.RegistrationViewModel
 import app.kupe.ui.register.TravelStyleScreen
+import app.kupe.ui.register.TravelStyleViewModel
 import app.kupe.ui.register.UsernameScreen
 import app.kupe.ui.welcome.WelcomeScreen
 import kotlinx.coroutines.flow.first
@@ -122,10 +123,13 @@ fun KupeApp(container: AppContainer) {
                     onNext = { navController.navigate(Routes.REG_TRAVEL_STYLE) },
                 )
             }
-            composable(Routes.REG_TRAVEL_STYLE) {
+            composable(Routes.REG_TRAVEL_STYLE) { entry ->
+                val vm = entry.registrationViewModel(navController, container)
+                val styles: TravelStyleViewModel = viewModel(factory = TravelStyleViewModel.factory(container))
                 TravelStyleScreen(
+                    viewModel = vm,
+                    stylesViewModel = styles,
                     onBack = { navController.popBackStack() },
-                    onSkip = { navController.navigate(Routes.REG_INTERESTS) },
                     onNext = { navController.navigate(Routes.REG_INTERESTS) },
                 )
             }
