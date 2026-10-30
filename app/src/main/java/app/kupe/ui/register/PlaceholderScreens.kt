@@ -33,19 +33,6 @@ fun TravelStyleScreen(onBack: () -> Unit, onSkip: () -> Unit, onNext: () -> Unit
 }
 
 @Composable
-fun InterestsScreen(onBack: () -> Unit, onSkip: () -> Unit, onNext: () -> Unit) {
-    BackHandler(onBack = onBack)
-    RegistrationScaffold(
-        step = 4,
-        footer = { NavigationFooter(onBack = onBack, onNext = onNext, onSkip = onSkip) },
-    ) {
-        StepHeading(stringResource(R.string.interests_title), stringResource(R.string.interests_subtitle))
-        Spacer(Modifier.height(24.dp))
-        PlaceholderBox(Modifier.fillMaxWidth().weight(1f))
-    }
-}
-
-@Composable
 fun ProfilePhotoScreen(
     viewModel: RegistrationViewModel,
     onBack: () -> Unit,

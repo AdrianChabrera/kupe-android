@@ -20,6 +20,7 @@ data class CompleteRegistrationRequest(
     val countryId: String? = null,
     val languageIds: List<String>? = null,
     val travelStyleCode: String? = null,
+    val travelInterestCodes: List<String>? = null,
 ) {
     override fun toString() = "CompleteRegistrationRequest(username=$username)"
 }
@@ -95,10 +96,12 @@ object ErrorCodes {
     const val UNSUPPORTED_EXTERNAL_PROVIDER = "UNSUPPORTED_EXTERNAL_PROVIDER"
     const val USERNAME_ALREADY_EXISTS = "USERNAME_ALREADY_EXISTS"
     const val TRAVEL_STYLE_NOT_FOUND = "TRAVEL_STYLE_NOT_FOUND"
+    const val TRAVEL_INTEREST_NOT_FOUND = "TRAVEL_INTEREST_NOT_FOUND"
 
     val ALL = setOf(
         COUNTRY_NOT_FOUND, EMAIL_ALREADY_EXISTS, EXTERNAL_EMAIL_CONFLICT, EXTERNAL_EMAIL_NOT_VERIFIED,
         EXTERNAL_IDENTITY_ALREADY_LINKED, INVALID_CREDENTIALS, INVALID_EXTERNAL_TOKEN, INVALID_REFRESH_TOKEN,
         INVALID_REGISTRATION_TOKEN, LANGUAGE_NOT_FOUND, UNSUPPORTED_EXTERNAL_PROVIDER, USERNAME_ALREADY_EXISTS,
+        TRAVEL_STYLE_NOT_FOUND, TRAVEL_INTEREST_NOT_FOUND,
     )
 }

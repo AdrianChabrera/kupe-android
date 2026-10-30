@@ -7,10 +7,16 @@ import kotlinx.coroutines.sync.withLock
 
 class UsersRepository(private val api: UsersApi) {
     private val lock = Mutex()
-    private var cached: List<String>? = null
+    private var cachedStyles: List<String>? = null
+    private var cachedInterests: List<String>? = null
 
     suspend fun travelStyles(): Result<List<String>> = lock.withLock {
-        cached?.let { Result.success(it) }
-            ?: safeCall { api.travelStyles() }.onSuccess { cached = it }
+        cachedStyles?.let { Result.success(it) }
+            ?: safeCall { api.travelStyles() }.onSuccess { cachedStyles = it }
+    }
+
+    suspend fun travelInterests(): Result<List<String>> = lock.withLock {
+        cachedInterests?.let { Result.success(it) }
+            ?: safeCall { api.travelInterests() }.onSuccess { cachedInterests = it }
     }
 }

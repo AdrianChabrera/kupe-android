@@ -57,6 +57,28 @@
     <!-- Registration steps 4, 7: placeholders -->
     <string name="interests_title">To know you better...</string>
     <string name="interests_subtitle">What are your main interests when travelling?</string>
+    <string name="interests_limit">You can select up to %1$d interests.</string>
+    <string name="interest_architecture">Architecture</string>
+    <string name="interest_art">Art</string>
+    <string name="interest_beaches">Beaches</string>
+    <string name="interest_castles">Castles</string>
+    <string name="interest_caves">Caves</string>
+    <string name="interest_cities">Cities</string>
+    <string name="interest_festivals">Festivals</string>
+    <string name="interest_food">Food</string>
+    <string name="interest_hiking">Hiking</string>
+    <string name="interest_luxury">Luxury</string>
+    <string name="interest_museums">Museums</string>
+    <string name="interest_parties">Parties</string>
+    <string name="interest_photography">Photography</string>
+    <string name="interest_road_trips">Road trips</string>
+    <string name="interest_ruins">Ruins</string>
+    <string name="interest_shops">Shopping</string>
+    <string name="interest_sports">Sports</string>
+    <string name="interest_temples">Temples</string>
+    <string name="interest_theme_parks">Theme parks</string>
+    <string name="interest_towns">Towns</string>
+    <string name="interest_traditions">Traditions</string>
     <string name="photo_title">Let others see you</string>
     <string name="photo_subtitle">Upload a photo</string>
 

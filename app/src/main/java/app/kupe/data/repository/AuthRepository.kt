@@ -32,9 +32,17 @@ class AuthRepository(
         countryId: String?,
         languageIds: List<String>,
         travelStyleCode: String?,
+        travelInterestCodes: List<String>,
     ): Result<Unit> = safeCall {
         val tokens = api.completeRegistration(
-            CompleteRegistrationRequest(registrationToken, username, countryId, languageIds.ifEmpty { null }, travelStyleCode)
+            CompleteRegistrationRequest(
+                registrationToken,
+                username,
+                countryId,
+                languageIds.ifEmpty { null },
+                travelStyleCode,
+                travelInterestCodes.ifEmpty { null },
+            )
         )
         store.save(tokens)
         Unit

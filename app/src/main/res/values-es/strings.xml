@@ -55,6 +55,28 @@
         <!-- Registration steps 3, 4, 7: placeholders -->
         <string name="interests_title">Para conocerte mejor...</string>
         <string name="interests_subtitle">¿Cuáles son tus principales intereses al viajar?</string>
+        <string name="interests_limit">Puedes seleccionar hasta %1$d intereses.</string>
+        <string name="interest_architecture">Arquitectura</string>
+        <string name="interest_art">Arte</string>
+        <string name="interest_beaches">Playas</string>
+        <string name="interest_castles">Castillos</string>
+        <string name="interest_caves">Cuevas</string>
+        <string name="interest_cities">Ciudades</string>
+        <string name="interest_festivals">Festivales</string>
+        <string name="interest_food">Comida</string>
+        <string name="interest_hiking">Senderismo</string>
+        <string name="interest_luxury">Lujo</string>
+        <string name="interest_museums">Museos</string>
+        <string name="interest_parties">Fiestas</string>
+        <string name="interest_photography">Fotografía</string>
+        <string name="interest_road_trips">Rutas en coche</string>
+        <string name="interest_ruins">Ruinas</string>
+        <string name="interest_shops">Compras</string>
+        <string name="interest_sports">Deporte</string>
+        <string name="interest_temples">Templos</string>
+        <string name="interest_theme_parks">Parques temáticos</string>
+        <string name="interest_towns">Pueblos</string>
+        <string name="interest_traditions">Tradiciones</string>
         <string name="photo_title">Deja que los demás te vean</string>
         <string name="photo_subtitle">Sube una foto</string>
 

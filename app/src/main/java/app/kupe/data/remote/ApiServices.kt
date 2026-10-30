@@ -30,4 +30,7 @@ interface GeoApi {
 interface UsersApi {
     @GET("api/users/travel-styles")
     suspend fun travelStyles(): List<String>
+
+    @GET("api/users/travel-interests")
+    suspend fun travelInterests(): List<String>
 }

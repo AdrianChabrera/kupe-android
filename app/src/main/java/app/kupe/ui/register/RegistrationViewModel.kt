@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 const val MAX_LANGUAGES = 20
+const val MAX_TRAVEL_INTERESTS = 8
 private const val GOOGLE_PROVIDER = "google"
 
 data class RegistrationState(
@@ -35,6 +36,7 @@ data class RegistrationState(
     val country: Country? = null,
     val languages: List<Language> = emptyList(),
     val travelStyleCode: String? = null,
+    val travelInterestCodes: Set<String> = emptySet(),
     val isExternal: Boolean = false,
     val isLoading: Boolean = false,
     val showCredentialErrors: Boolean = false,
@@ -69,6 +71,15 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
     fun selectCountry(country: Country) = _state.update { it.copy(country = country) }
     fun selectTravelStyle(code: String) = _state.update { it.copy(travelStyleCode = code) }
     fun clearTravelStyle() = _state.update { it.copy(travelStyleCode = null) }
+
+    fun toggleTravelInterest(code: String) = _state.update {
+        when {
+            code in it.travelInterestCodes -> it.copy(travelInterestCodes = it.travelInterestCodes - code)
+            it.travelInterestCodes.size >= MAX_TRAVEL_INTERESTS -> it
+            else -> it.copy(travelInterestCodes = it.travelInterestCodes + code)
+        }
+    }
+    fun clearTravelInterests() = _state.update { it.copy(travelInterestCodes = emptySet()) }
     fun clearCountry() = _state.update { it.copy(country = null) }
 
     fun addLanguage(language: Language) = _state.update {
@@ -153,7 +164,7 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
         val username = current.username.trim()
         _state.update { it.copy(isLoading = true, errorRes = null) }
         viewModelScope.launch {
-            auth.completeRegistration(token, username, current.country?.id, current.languages.map { it.id }, current.travelStyleCode).fold(
+            auth.completeRegistration(token, username, current.country?.id, current.languages.map { it.id }, current.travelStyleCode, current.travelInterestCodes.toList()).fold(
                 onSuccess = {
                     registrationToken = null
                     _state.value = RegistrationState()

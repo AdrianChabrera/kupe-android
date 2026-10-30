@@ -32,6 +32,7 @@ import app.kupe.ui.register.LanguageSearchViewModel
 import app.kupe.ui.register.LanguagesScreen
 import app.kupe.ui.register.ProfilePhotoScreen
 import app.kupe.ui.register.RegistrationViewModel
+import app.kupe.ui.register.TravelInterestViewModel
 import app.kupe.ui.register.TravelStyleScreen
 import app.kupe.ui.register.TravelStyleViewModel
 import app.kupe.ui.register.UsernameScreen
@@ -133,10 +134,13 @@ fun KupeApp(container: AppContainer) {
                     onNext = { navController.navigate(Routes.REG_INTERESTS) },
                 )
             }
-            composable(Routes.REG_INTERESTS) {
+            composable(Routes.REG_INTERESTS) { entry ->
+                val vm = entry.registrationViewModel(navController, container)
+                val interests: TravelInterestViewModel = viewModel(factory = TravelInterestViewModel.factory(container))
                 InterestsScreen(
+                    viewModel = vm,
+                    interestsViewModel = interests,
                     onBack = { navController.popBackStack() },
-                    onSkip = { navController.navigate(Routes.REG_COUNTRY) },
                     onNext = { navController.navigate(Routes.REG_COUNTRY) },
                 )
             }
