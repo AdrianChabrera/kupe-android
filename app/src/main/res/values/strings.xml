@@ -92,6 +92,8 @@
     <string name="languages_info">Kupe automatically translates messages in real time. This is just to let users know which languages you really talk in case you decide to hang out with any of them.</string>
     <string name="languages_limit">You can select up to %1$d languages.</string>
     <string name="remove_item">Remove %1$s</string>
+    <string name="languages_order_hint">Drag to sort them by fluency, from highest to lowest.</string>
+    <string name="reorder_item">Reorder %1$s</string>
 
     <!-- Search -->
     <string name="search_hint">Search</string>

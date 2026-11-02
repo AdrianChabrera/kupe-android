@@ -87,6 +87,10 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
         else it.copy(languages = it.languages + language)
     }
     fun removeLanguage(language: Language) = _state.update { it.copy(languages = it.languages.filterNot { l -> l.id == language.id }) }
+    fun moveLanguage(from: Int, to: Int) = _state.update {
+        if (from == to || from !in it.languages.indices || to !in it.languages.indices) it
+        else it.copy(languages = it.languages.toMutableList().apply { add(to, removeAt(from)) })
+    }
     fun clearLanguages() = _state.update { it.copy(languages = emptyList()) }
 
     fun submitCredentials() {

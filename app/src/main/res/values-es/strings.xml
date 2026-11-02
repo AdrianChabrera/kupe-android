@@ -90,6 +90,8 @@
         <string name="languages_info">Kupe traduce los mensajes automáticamente en tiempo real. Esto solo sirve para que los demás usuarios sepan qué idiomas hablas realmente, por si decides quedar con alguno de ellos.</string>
         <string name="languages_limit">Puedes seleccionar hasta %1$d idiomas.</string>
         <string name="remove_item">Quitar %1$s</string>
+        <string name="languages_order_hint">Arrastra para ordenarlos por dominio, de mayor a menor.</string>
+        <string name="reorder_item">Reordenar %1$s</string>
 
         <!-- Search -->
         <string name="search_hint">Buscar</string>

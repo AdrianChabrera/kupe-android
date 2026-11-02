@@ -98,6 +98,7 @@ fun SelectedItemRow(
     removeIcon: ImageVector,
     onRemove: () -> Unit,
     modifier: Modifier = Modifier,
+    dragHandle: (@Composable () -> Unit)? = null,
 ) {
     Surface(color = Blush, shape = RoundedCornerShape(10.dp), modifier = modifier.fillMaxWidth()) {
         Row(
@@ -107,6 +108,7 @@ fun SelectedItemRow(
         ) {
             FlagImage(flagUrl)
             Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f), maxLines = 1, overflow = TextOverflow.Ellipsis)
+            dragHandle?.invoke()
             IconButton(onClick = onRemove) {
                 Icon(removeIcon, contentDescription = stringResource(R.string.remove_item, label), tint = Coral)
             }
