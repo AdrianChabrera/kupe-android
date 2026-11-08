@@ -1,4 +1,4 @@
-package app.kupe.ui.register
+package app.kupe.ui.register.country_step
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +17,11 @@ import app.kupe.data.remote.Flags
 import app.kupe.ui.components.NavigationFooter
 import app.kupe.ui.components.RegistrationScaffold
 import app.kupe.ui.components.StepHeading
+import app.kupe.ui.register.CountrySearchViewModel
+import app.kupe.ui.register.RegistrationViewModel
+import app.kupe.ui.register.RemoveIcon
+import app.kupe.ui.register.SearchPicker
+import app.kupe.ui.register.SelectedItemRow
 
 @Composable
 fun CountryScreen(

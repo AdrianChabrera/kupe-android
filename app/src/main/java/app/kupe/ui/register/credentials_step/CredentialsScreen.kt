@@ -1,6 +1,6 @@
 @file:OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class)
 
-package app.kupe.ui.register
+package app.kupe.ui.register.credentials_step
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -49,6 +49,9 @@ import app.kupe.ui.components.GoogleSignInButton
 import app.kupe.ui.components.KupeTextField
 import app.kupe.ui.components.NavigationFooter
 import app.kupe.ui.components.RegistrationScaffold
+import app.kupe.ui.register.RegistrationEvent
+import app.kupe.ui.register.RegistrationViewModel
+import app.kupe.ui.register.Validators
 import app.kupe.ui.theme.Coral
 import kotlinx.coroutines.launch
 

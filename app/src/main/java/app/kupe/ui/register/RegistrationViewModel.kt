@@ -70,7 +70,6 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
 
     fun selectCountry(country: Country) = _state.update { it.copy(country = country) }
     fun selectTravelStyle(code: String) = _state.update { it.copy(travelStyleCode = code) }
-    fun clearTravelStyle() = _state.update { it.copy(travelStyleCode = null) }
 
     fun toggleTravelInterest(code: String) = _state.update {
         when {
@@ -79,7 +78,6 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
             else -> it.copy(travelInterestCodes = it.travelInterestCodes + code)
         }
     }
-    fun clearTravelInterests() = _state.update { it.copy(travelInterestCodes = emptySet()) }
     fun clearCountry() = _state.update { it.copy(country = null) }
 
     fun addLanguage(language: Language) = _state.update {
@@ -91,7 +89,6 @@ class RegistrationViewModel(private val auth: AuthRepository) : ViewModel() {
         if (from == to || from !in it.languages.indices || to !in it.languages.indices) it
         else it.copy(languages = it.languages.toMutableList().apply { add(to, removeAt(from)) })
     }
-    fun clearLanguages() = _state.update { it.copy(languages = emptyList()) }
 
     fun submitCredentials() {
         val current = _state.value

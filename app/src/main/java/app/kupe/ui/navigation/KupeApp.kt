@@ -24,18 +24,18 @@ import app.kupe.di.AppContainer
 import app.kupe.ui.home.HomeScreen
 import app.kupe.ui.login.LoginScreen
 import app.kupe.ui.login.LoginViewModel
-import app.kupe.ui.register.CountryScreen
+import app.kupe.ui.register.country_step.CountryScreen
 import app.kupe.ui.register.CountrySearchViewModel
-import app.kupe.ui.register.CredentialsScreen
-import app.kupe.ui.register.InterestsScreen
+import app.kupe.ui.register.credentials_step.CredentialsScreen
+import app.kupe.ui.register.travel_interests_step.TravelInterestsScreen
 import app.kupe.ui.register.LanguageSearchViewModel
-import app.kupe.ui.register.LanguagesScreen
+import app.kupe.ui.register.languages_step.LanguagesScreen
 import app.kupe.ui.register.ProfilePhotoScreen
 import app.kupe.ui.register.RegistrationViewModel
 import app.kupe.ui.register.TravelInterestViewModel
-import app.kupe.ui.register.TravelStyleScreen
-import app.kupe.ui.register.TravelStyleViewModel
-import app.kupe.ui.register.UsernameScreen
+import app.kupe.ui.register.travel_style_step.TravelStyleScreen
+import app.kupe.ui.register.travel_style_step.TravelStyleViewModel
+import app.kupe.ui.register.username_step.UsernameScreen
 import app.kupe.ui.welcome.WelcomeScreen
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -137,7 +137,7 @@ fun KupeApp(container: AppContainer) {
             composable(Routes.REG_INTERESTS) { entry ->
                 val vm = entry.registrationViewModel(navController, container)
                 val interests: TravelInterestViewModel = viewModel(factory = TravelInterestViewModel.factory(container))
-                InterestsScreen(
+                TravelInterestsScreen(
                     viewModel = vm,
                     interestsViewModel = interests,
                     onBack = { navController.popBackStack() },

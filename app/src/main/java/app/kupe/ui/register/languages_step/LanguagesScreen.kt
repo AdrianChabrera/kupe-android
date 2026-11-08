@@ -1,4 +1,4 @@
-package app.kupe.ui.register
+package app.kupe.ui.register.languages_step
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateDpAsState
@@ -30,6 +30,12 @@ import app.kupe.ui.components.HintText
 import app.kupe.ui.components.NavigationFooter
 import app.kupe.ui.components.RegistrationScaffold
 import app.kupe.ui.components.StepHeading
+import app.kupe.ui.register.DeleteIcon
+import app.kupe.ui.register.LanguageSearchViewModel
+import app.kupe.ui.register.MAX_LANGUAGES
+import app.kupe.ui.register.RegistrationViewModel
+import app.kupe.ui.register.SearchPicker
+import app.kupe.ui.register.SelectedItemRow
 import app.kupe.ui.theme.Coral
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState

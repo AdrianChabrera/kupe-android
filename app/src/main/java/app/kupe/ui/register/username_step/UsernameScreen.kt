@@ -1,6 +1,6 @@
 @file:OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class)
 
-package app.kupe.ui.register
+package app.kupe.ui.register.username_step
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +31,8 @@ import app.kupe.ui.components.HintText
 import app.kupe.ui.components.KupeTextField
 import app.kupe.ui.components.NavigationFooter
 import app.kupe.ui.components.RegistrationScaffold
+import app.kupe.ui.register.RegistrationViewModel
+import app.kupe.ui.register.Validators
 
 @Composable
 fun UsernameScreen(viewModel: RegistrationViewModel, onBack: () -> Unit, onNext: () -> Unit) {

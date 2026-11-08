@@ -1,4 +1,4 @@
-package app.kupe.ui.register
+package app.kupe.ui.register.travel_style_step
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
