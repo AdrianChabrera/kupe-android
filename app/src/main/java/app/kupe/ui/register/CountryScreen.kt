@@ -37,8 +37,6 @@ fun CountryScreen(
             NavigationFooter(
                 onBack = onBack,
                 onNext = onNext,
-                onSkip = { viewModel.clearCountry(); onNext() },
-                nextEnabled = state.country != null,
             )
         },
     ) {

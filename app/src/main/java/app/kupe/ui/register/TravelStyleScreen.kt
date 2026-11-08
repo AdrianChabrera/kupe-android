@@ -26,10 +26,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,9 +41,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.kupe.R
-import app.kupe.ui.components.HintText
 import app.kupe.ui.components.KupeButton
 import app.kupe.ui.components.KupeButtonStyle
+import app.kupe.ui.components.NavigationFooter
 import app.kupe.ui.components.RegistrationScaffold
 import app.kupe.ui.components.StepHeading
 import app.kupe.ui.theme.Blush
@@ -61,7 +65,12 @@ fun TravelStyleScreen(
 
     RegistrationScaffold(
         step = 3,
-        footer = { HintText(stringResource(R.string.can_change_later)) },
+        footer = {
+            NavigationFooter(
+                onBack = onBack,
+                onNext = onNext,
+            )
+        },
     ) {
         StepHeading(stringResource(R.string.travel_style_title), stringResource(R.string.travel_style_subtitle))
         Spacer(Modifier.height(24.dp))
@@ -79,10 +88,8 @@ fun TravelStyleScreen(
             stylesState.styles.isNotEmpty() -> TravelStyleCarousel(
                 styles = stylesState.styles,
                 selectedCode = state.travelStyleCode,
-                onSelect = { style ->
-                    viewModel.selectTravelStyle(style.code)
-                    onNext()
-                },
+                onStyleShown = { viewModel.selectTravelStyle(it.code) },
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
@@ -92,8 +99,9 @@ fun TravelStyleScreen(
 private fun TravelStyleCarousel(
     styles: List<TravelStyleUi>,
     selectedCode: String?,
-    onSelect: (TravelStyleUi) -> Unit,
-) {
+    onStyleShown: (TravelStyleUi) -> Unit,
+    modifier: Modifier = Modifier,
+    ) {
     val count = styles.size
     val looping = count > 1
     val startIndex = styles.indexOfFirst { it.code == selectedCode }.coerceAtLeast(0)
@@ -102,6 +110,12 @@ private fun TravelStyleCarousel(
         pageCount = { if (looping) LOOP_PAGES else count },
     )
     val scope = rememberCoroutineScope()
+    val currentOnStyleShown by rememberUpdatedState(onStyleShown)
+
+    LaunchedEffect(pagerState, styles) {
+        snapshotFlow { pagerState.currentPage }
+            .collect { page -> currentOnStyleShown(styles[page % count]) }
+    }
 
     fun scrollBy(delta: Int) {
         scope.launch { pagerState.animateScrollToPage(pagerState.currentPage + delta) }
@@ -109,7 +123,7 @@ private fun TravelStyleCarousel(
 
     HorizontalPager(
         state = pagerState,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier,
         pageSpacing = 12.dp,
         verticalAlignment = Alignment.Top,
     ) { page ->
@@ -118,7 +132,6 @@ private fun TravelStyleCarousel(
             showArrows = looping,
             onPrevious = { scrollBy(-1) },
             onNext = { scrollBy(1) },
-            onSelect = onSelect,
         )
     }
 }
@@ -129,7 +142,6 @@ private fun TravelStyleCard(
     showArrows: Boolean,
     onPrevious: () -> Unit,
     onNext: () -> Unit,
-    onSelect: (TravelStyleUi) -> Unit,
 ) {
     Surface(
         color = Blush,
@@ -142,7 +154,7 @@ private fun TravelStyleCard(
         ) {
             Text(
                 text = stringResource(style.nameRes),
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
             )
@@ -153,16 +165,19 @@ private fun TravelStyleCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 if (showArrows) {
-                    IconButton(onClick = onPrevious) {
+                    IconButton(
+                        onClick = onPrevious,
+                        modifier = Modifier.size(72.dp),
+                    ) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowLeft,
                             contentDescription = stringResource(R.string.travel_style_previous),
                             tint = Coral,
-                            modifier = Modifier.size(40.dp),
+                            modifier = Modifier.size(64.dp),
                         )
                     }
                 } else {
-                    Spacer(Modifier.width(48.dp))
+                    Spacer(Modifier.width(72.dp))
                 }
                 Box(Modifier.weight(1f).fillMaxHeight(), contentAlignment = Alignment.Center) {
                     style.iconRes?.let { icon ->
@@ -170,20 +185,24 @@ private fun TravelStyleCard(
                             painter = painterResource(icon),
                             contentDescription = null,
                             modifier = Modifier.fillMaxHeight(),
+                            contentScale = ContentScale.Fit,
                         )
                     }
                 }
                 if (showArrows) {
-                    IconButton(onClick = onNext) {
+                    IconButton(
+                        onClick = onNext,
+                        modifier = Modifier.size(72.dp),
+                    ) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowRight,
                             contentDescription = stringResource(R.string.travel_style_next),
                             tint = Coral,
-                            modifier = Modifier.size(40.dp),
+                            modifier = Modifier.size(64.dp),
                         )
                     }
                 } else {
-                    Spacer(Modifier.width(48.dp))
+                    Spacer(Modifier.width(72.dp))
                 }
             }
 
@@ -192,12 +211,6 @@ private fun TravelStyleCard(
                 text = stringResource(style.descriptionRes),
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Justify,
-            )
-            Spacer(Modifier.height(20.dp))
-            KupeButton(
-                stringResource(R.string.action_select),
-                { onSelect(style) },
-                Modifier.width(140.dp),
             )
         }
     }

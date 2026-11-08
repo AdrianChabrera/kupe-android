@@ -69,7 +69,6 @@ fun InterestsScreen(
             NavigationFooter(
                 onBack = onBack,
                 onNext = onNext,
-                onSkip = { viewModel.clearTravelInterests(); onNext() },
             )
         },
     ) {

@@ -53,12 +53,9 @@ fun LanguagesScreen(
     RegistrationScaffold(
         step = 6,
         footer = {
-            HintText(stringResource(R.string.languages_info))
             NavigationFooter(
                 onBack = onBack,
                 onNext = onNext,
-                onSkip = { viewModel.clearLanguages(); onNext() },
-                nextEnabled = state.languages.isNotEmpty(),
             )
         },
     ) {

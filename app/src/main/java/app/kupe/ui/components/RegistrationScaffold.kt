@@ -140,48 +140,19 @@ fun AppLogoPlaceholder(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun PlaceholderBox(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .drawBehind {
-                drawRoundRect(
-                    color = Coral,
-                    cornerRadius = CornerRadius(16.dp.toPx()),
-                    style = Stroke(width = 2.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(14f, 14f))),
-                )
-            }
-            .clip(RoundedCornerShape(16.dp)),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(stringResource(R.string.placeholder_label), color = Coral, fontWeight = FontWeight.Bold)
-    }
-}
-
-@Composable
 fun NavigationFooter(
     onBack: () -> Unit,
     onNext: () -> Unit,
     modifier: Modifier = Modifier,
-    onSkip: (() -> Unit)? = null,
-    skipLabel: String = stringResource(R.string.action_skip),
     nextLabel: String = stringResource(R.string.action_next),
-    nextEnabled: Boolean = true,
     loading: Boolean = false,
     showChangeLaterHint: Boolean = true,
 ) {
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         if (showChangeLaterHint) HintText(stringResource(R.string.can_change_later))
-        if (onSkip != null) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 KupeButton(stringResource(R.string.action_go_back), onBack, Modifier.weight(1f), KupeButtonStyle.Neutral, enabled = !loading)
-                KupeButton(skipLabel, onSkip, Modifier.weight(1f), KupeButtonStyle.Outlined, enabled = !loading)
-            }
-            KupeButton(nextLabel, onNext, Modifier.fillMaxWidth(), enabled = nextEnabled, loading = loading)
-        } else {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                KupeButton(stringResource(R.string.action_go_back), onBack, Modifier.weight(1f), KupeButtonStyle.Neutral, enabled = !loading)
-                KupeButton(nextLabel, onNext, Modifier.weight(1f), enabled = nextEnabled, loading = loading)
-            }
+                KupeButton(nextLabel, onClick = onNext, Modifier.weight(1f), enabled = !loading)
         }
     }
 }
