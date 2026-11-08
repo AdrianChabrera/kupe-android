@@ -1,4 +1,7 @@
     <resources>
+        <!-- General -->
+        <string name="work_in_progress">Funcionalidad en progreso</string>
+
         <!-- Welcome / login / home -->
         <string name="welcome_tagline">Página de bienvenida\nPendiente de diseño</string>
         <string name="action_login">Iniciar sesión</string>
@@ -15,7 +18,6 @@
         <string name="register_title">Crear cuenta</string>
         <string name="step_indicator">Paso %1$d de %2$d</string>
         <string name="can_change_later">Podrás cambiarlo más adelante.</string>
-        <string name="placeholder_label">PROVISIONAL</string>
         <string name="action_go_back">Volver</string>
         <string name="action_skip">Omitir</string>
         <string name="action_next">Siguiente</string>
@@ -79,15 +81,16 @@
         <string name="interest_traditions">Tradiciones</string>
         <string name="photo_title">Deja que los demás te vean</string>
         <string name="photo_subtitle">Sube una foto</string>
+        <string name="photo_future_update">Subir fotos de perfil llegará en una actualización futura</string>
 
-        <!-- Registration step 5: country -->
+
+            <!-- Registration step 5: country -->
         <string name="country_title">El comienzo de todo</string>
         <string name="country_subtitle">¿Cuál es tu país?</string>
 
         <!-- Registration step 6: languages -->
         <string name="languages_title">Tus palabras, tu esencia</string>
         <string name="languages_subtitle">¿Qué idiomas dominas?</string>
-        <string name="languages_info">Kupe traduce los mensajes automáticamente en tiempo real. Esto solo sirve para que los demás usuarios sepan qué idiomas hablas realmente, por si decides quedar con alguno de ellos.</string>
         <string name="languages_limit">Puedes seleccionar hasta %1$d idiomas.</string>
         <string name="remove_item">Quitar %1$s</string>
         <string name="languages_order_hint">Arrastra para ordenarlos por dominio, de mayor a menor.</string>

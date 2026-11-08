@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Kupe</string>
+    <!-- General -->
+    <string name="work_in_progress">Work in progress</string>
 
     <!-- Welcome / login / home -->
     <string name="welcome_tagline">Welcome page\nTo be designed</string>
@@ -17,7 +19,6 @@
     <string name="register_title">Create account</string>
     <string name="step_indicator">Step %1$d of %2$d</string>
     <string name="can_change_later">You can change this later.</string>
-    <string name="placeholder_label">PLACEHOLDER</string>
     <string name="action_go_back">Go back</string>
     <string name="action_skip">Skip</string>
     <string name="action_next">Next</string>
@@ -81,6 +82,8 @@
     <string name="interest_traditions">Traditions</string>
     <string name="photo_title">Let others see you</string>
     <string name="photo_subtitle">Upload a photo</string>
+    <string name="photo_future_update">Uploading profile photos will come in a future update</string>
+
 
     <!-- Registration step 5: country -->
     <string name="country_title">The start of it all</string>
@@ -89,7 +92,6 @@
     <!-- Registration step 6: languages -->
     <string name="languages_title">Your words, your essence</string>
     <string name="languages_subtitle">Which languages do you feel fluent with?</string>
-    <string name="languages_info">Kupe automatically translates messages in real time. This is just to let users know which languages you really talk in case you decide to hang out with any of them.</string>
     <string name="languages_limit">You can select up to %1$d languages.</string>
     <string name="remove_item">Remove %1$s</string>
     <string name="languages_order_hint">Drag to sort them by fluency, from highest to lowest.</string>
