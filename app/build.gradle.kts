@@ -23,7 +23,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:5100/\"")
+            buildConfigField("String", "API_BASE_URL", "\"http://localhost:5100/\"")
         }
         release {
             // TODO: replace with the real production URL. Release builds REQUIRE https.
@@ -87,4 +87,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.appcompat)
     implementation(libs.reorderable)
+    implementation(libs.maplibre)
+    implementation(libs.androidx.webkit)
 }
